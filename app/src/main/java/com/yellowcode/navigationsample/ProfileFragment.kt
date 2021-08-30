@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
 class ProfileFragment : Fragment() {
 
+    private val userViewModel: UserViewModel by activityViewModels()
     val args: ProfileFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -25,5 +30,11 @@ class ProfileFragment : Fragment() {
 
         val name = args.nameArg
         view.findViewById<TextView>(R.id.tvWelcome)?.text = getString(R.string.welcome, "$name")
+
+        view.findViewById<Button>(R.id.btnLogout).setOnClickListener {
+            userViewModel.logout().observe(viewLifecycleOwner, {
+                findNavController().popBackStack()
+            })
+        }
     }
 }

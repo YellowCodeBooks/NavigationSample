@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
+
+    private val userViewModel: UserViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,10 +25,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
+
+        userViewModel.loggedIn.observe(viewLifecycleOwner, { hasLoggedIn ->
+            if (hasLoggedIn.not()) {
+                navController.navigate(R.id.action_homeFragment_to_signInFragment)
+            }
+        })
 
         view.findViewById<Button>(R.id.btnViewProfile)?.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment(nameArg = "My Name")
-            findNavController().navigate(action)
+            val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment(nameArg = userViewModel.getUserName() ?: "")
+            navController.navigate(action)
         }
     }
 }

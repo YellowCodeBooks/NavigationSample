@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.yellowcode.navigationsample.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/view_profile_label"
         tools:layout="@layout/fragment_profile" >
         <argument
             android:name="nameArg"
@@ -16,11 +16,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.yellowcode.navigationsample.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="@string/home_label"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -29,11 +36,19 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.yellowcode.navigationsample.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        android:label="@string/sign_in_label"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.yellowcode.navigationsample.SignUpFragment"
-        android:label="fragment_sign_up"
+        android:label="@string/sign_up_label"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>

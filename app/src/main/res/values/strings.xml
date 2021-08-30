@@ -8,4 +8,12 @@
     <string name="don_t_have_account">Don\'t have account?</string>
     <string name="create_account">Create Account</string>
     <string name="logout">Logout</string>
+    <string name="view_profile">View Profile</string>
+
+    <!-- App titles -->
+    <string name="home_label">Navigation Sample</string>
+    <string name="sign_in_label">Sign In</string>
+    <string name="sign_up_label">Sign Up</string>
+    <string name="view_profile_label">My Profile</string>
+
 </resources>
